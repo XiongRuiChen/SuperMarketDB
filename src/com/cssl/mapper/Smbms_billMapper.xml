@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cssl.mapper.Smbms_billMapper">
+    <resultMap id="BaseResultMap" type="com.cssl.pojo.Smbms_bill" >
+        <id column="id" property="id"/>
+        <result column="billCode" property="billCode"/>
+        <result column="productName" property="productName"/>
+        <result column="productDesc" property="productDesc"/>
+        <result column="productUnit" property="productUnit"/>
+        <result column="productCount" property="productCount"/>
+        <result column="totalPrice" property="totalPrice"/>
+        <result column="isPayment" property="isPayment"/>
+        <result column="createdBy" property="createdBy"/>
+        <result column="creationDate" property="creationDate"/>
+        <result column="modifyBy" property="modifyBy"/>
+        <result column="modifyDate" property="modifyDate"/>
+        <result column="providerId" property="providerId"/>
+        <association property="smbmsProvider" resultMap="ProviderResultMap"/>
+    </resultMap>
+
+    <resultMap id="ProviderResultMap" type="com.cssl.pojo.Smbms_provider" >
+        <id column="id" property="id"/>
+        <result column="proCode" property="proCode"/>
+        <result column="proName" property="proName"/>
+        <result column="proDesc" property="proDesc"/>
+        <result column="proContact" property="proContact"/>
+        <result column="proPhone" property="proPhone"/>
+        <result column="proAddress" property="proAddress"/>
+        <result column="proFax" property="proFax"/>
+        <result column="createdBy" property="createdBy"/>
+        <result column="creationDate" property="creationDate"/>
+        <result column="modifyBy" property="modifyBy"/>
+        <result column="modifyDate" property="modifyDate"/>
+        <association property="smbmsBill" resultMap="BaseResultMap"/>
+    </resultMap>
+
+    <select id="FindAllBill" resultType="Smbms_bill">
+        SELECT * FROM `smbms_bill` WHERE 1 = 1;
+    </select>
+
+    <select id="selectByPageAll" resultMap="BaseResultMap">
+        select b.*,p.proName from smbms_bill b,smbms_provider p where b.providerId=p.id
+        <if test="productName != ''">
+            and productName like concat('%',#{productName},'%')
+        </if>
+        <if test="proName !=''">
+            and proName = #{proName}
+        </if>
+        <if test="isPayment !=''">
+            and isPayment = #{isPayment}
+        </if>
+    </select>
+
+
+</mapper>

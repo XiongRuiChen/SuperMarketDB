@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:p="http://www.springframework.org/schema/p"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+    
+    <!--开启注解扫描 mapper service 不扫controller  -->
+    <context:component-scan base-package="com.cssl">
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+    <!--1.引入数据库连接参数文件  -->
+    <context:property-placeholder location="classpath:mysqldb.properties"/>
+
+	<!--2.定义数据源bean  -->
+	<bean id="mydataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="url" value="${jdbc.url}"/>
+		<property name="username" value="${jdbc.username}"/>
+		<property name="password" value="${jdbc.password}"/>
+		<property name="driverClassName" value="${jdbc.driver}"/>
+	</bean>
+	<!--3.构造会话工厂  -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!--构建工厂需要的数据源  -->
+		<property name="dataSource" ref="mydataSource"/>
+		<!--指定bean别名  -->
+		<property name="typeAliasesPackage" value="com.cssl.pojo"/>
+		<!--引用mybatis-config.xml核心配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml"/>
+	</bean>
+
+	<!--4.引入mapper 推荐扫包方式  -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.cssl.mapper"/>
+	</bean>
+	
+	<!--声明式事务 Aop  -->
+	<bean id="txManager" 
+	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mydataSource"/>
+	</bean>
+	
+	<!--开启注解支持事务 -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	
+	
+	
+</beans>

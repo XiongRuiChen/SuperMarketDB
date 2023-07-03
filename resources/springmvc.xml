@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/tx
+        https://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc
+        https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<!--开启注解扫描 只扫描controller  不扫描mapper service -->
+	<context:component-scan base-package="com.cssl.controller" >
+	
+		
+	</context:component-scan>
+	<!--支持springmvc注解  -->
+	<mvc:annotation-driven />
+	<!--精准释放静态资源 
+	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources> -->
+	<!--粗犷式 释放资源 阻止渲染结果  -->
+	<mvc:default-servlet-handler/>
+	
+	<!--视图解析器 根据handle返回modelAndView 决定配置视图后缀名和前置文件夹位置  -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/"/>
+		<property name="suffix" value=".jsp"/>
+	</bean>
+
+	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+	<!-- 数字越小代表优先级越高 -->
+	   <property name="order" value="100"/>	
+    </bean>
+	
+		
+</beans>

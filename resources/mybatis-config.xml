@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--mybatis核心配置文件 -->
+<configuration>
+
+	<!--设置mybatis运行行为 -->
+	<settings>
+		<setting name="autoMappingBehavior" value="FULL" />
+		<!-- 指定日志 -->
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+
+	<!--添加分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageHelper">
+			<!-- pageSize=0相当于没有执行分页查询，但是返回结果仍然是Page类型 -->
+			<property name="pageSizeZero" value="true" />
+			<!-- 启用合理化时，如果pageNum<1或pageNum>pages会返回首页或尾页 -->
+			<property name="reasonable" value="true" />
+		</plugin>
+	</plugins>
+</configuration>
