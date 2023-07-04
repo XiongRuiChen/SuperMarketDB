@@ -46,7 +46,10 @@ public class Smbms_providerController {
         return "providerlist";
     }
 
-//    public ModelAndView
+    public ModelAndView addProvider(ModelAndView mv){
+
+        return mv;
+    }
 
 
 
