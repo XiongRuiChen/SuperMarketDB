@@ -21,7 +21,7 @@
 
 
             <input value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath }/provider/provideradd">添加供应商</a>
+            <a href="${pageContext.request.contextPath }/provideradd.jsp">添加供应商</a>
         </form>
     </div>
     <!--供应商操作表格-->
@@ -75,7 +75,7 @@
             <a href="${pageContext.request.contextPath }/providerlist.do?procontact=${procontact}&proname=${proname}">首页</a>
             <a href="${pageContext.request.contextPath }/providerlist.do?n=${pageInfo.prePage}&procontact=${procontact}&proname=${proname}">上一页</a>
             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
-                <a href="${pageContext.request.contextPath }/providerlist?n=${num}&procontact=${procontact}&proname=${proname}">${num}</a>
+                <a href="${pageContext.request.contextPath }/providerlist.do?n=${num}&procontact=${procontact}&proname=${proname}">${num}</a>
             </c:forEach>
             <a href="${pageContext.request.contextPath }/providerlist.do?n=${pageInfo.nextPage}&procontact=${procontact}&proname=${proname}">下一页</a>
             <a href="${pageContext.request.contextPath }/providerlist.do?n=${pageInfo.lastPage}&procontact=${procontact}&proname=${proname}">最后一页</a>

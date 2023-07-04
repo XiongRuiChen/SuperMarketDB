@@ -18,7 +18,7 @@
         <result column="modifyBy" property="modifyBy"/>
     </resultMap>
 
-    <select id="" resultType="Smbms_provider">
+    <select id="" resultType="com.cssl.pojo.Smbms_provider">
         SELECT * FROM `smbms_provider`
     </select>
 
@@ -31,5 +31,10 @@
             and proContact like concat('%',#{proContact},'%')
         </if>
     </select>
+
+    <insert id="addProvider" parameterType="com.cssl.pojo.Smbms_provider">
+        INSERT INTO `smbms_provider`(proCode,proName,proDesc,proContact,proPhone,proAddress,proFax,createdBy,creationDate)
+        VALUES(#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{createdBy},#{creationDate})
+    </insert>
 
 </mapper>

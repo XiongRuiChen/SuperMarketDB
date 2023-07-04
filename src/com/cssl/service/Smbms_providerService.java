@@ -9,6 +9,7 @@ public interface Smbms_providerService {
     //查询所有供货商
     List<Smbms_provider> findAll();
 
-    public PageInfo getProviderListPage(String proName, String proContact, Integer n, Integer pageSize);
+    PageInfo getProviderListPage(String proName, String proContact, Integer n, Integer pageSize);
 
+    Integer addProvider(Smbms_provider provider);
 }
