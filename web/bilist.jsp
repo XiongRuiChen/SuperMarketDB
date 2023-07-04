@@ -3,6 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="head.jsp"%>
+<c:if test="${pageInfo==null}">
+    <c:redirect url="http://localhost:8080/SuperMarketDB/billlist.do"/>
+</c:if>
 
 <div class="right">
     <div class="location">
@@ -10,7 +13,7 @@
         <span>订单管理页面</span>
     </div>
     <div class="search">
-        <form method="get" action="${pageContext.request.contextPath }/billlist.do">
+        <form method="get" action="${pageContext.request.contextPath}/billlist.do">
             <span>商品名称：</span>
             <input name="productName" type="text" value="${productName}">
 
@@ -28,11 +31,9 @@
                 <option value="1">未付款</option>
                 <option value="2">已付款</option>
             </select>
-
             <input	value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath }/add">添加订单</a>
+            <a href="${pageContext.request.contextPath }/getProNamesC.do">添加订单</a>
         </form>
-
     </div>
     <!--账单表格 样式和供应商公用-->
     <table class="providerTable" cellpadding="0" cellspacing="0">
@@ -85,9 +86,9 @@
                     <span><f:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/></span>
                 </td>
                 <td>
-                    <span><a class="viewBill" href="${pageContext.request.contextPath }view?id=${bill.id}&flag=update"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-                    <span><a class="modifyBill" href="${pageContext.request.contextPath }modify?id=${bill.id}&flag=update"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-                    <span><a class="deleteBill" href="${pageContext.request.contextPath }del?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+                    <span><a class="viewBill" href="${pageContext.request.contextPath }/view.do?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
+                    <span><a class="modifyBill" href="${pageContext.request.contextPath }/modify.do?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
+                    <span><a class="deleteBill" href="${pageContext.request.contextPath }/del.do?id=${bill.id}" did="${bill.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除" onclick="confirm('真的要删除这条数据吗?')" class="aid"/></a></span>
                 </td>
             </tr>
         </c:forEach>
@@ -112,16 +113,19 @@
     </section>
 
     <!--点击删除按钮后弹出的页面-->
-    <div class="zhezhao"></div>
-    <div class="remove" id="removeBi">
-        <div class="removerChid">
-            <h2>提示</h2>
-            <div class="removeMain">
-                <p>你确定要删除该订单吗？</p>
-                <a href="#" id="yes">确定</a>
-                <a href="#" id="no">取消</a>
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+        <form class="modal-content" action="${pageContext.request.contextPath }/del.do?id=">
+            <div class="container">
+                <h1>删除数据</h1>
+                <p>您确定要删除这条数据吗？</p>
+
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                </div>
             </div>
-        </div>
+        </form>
     </div>
 
     <%@include file="foot.jsp" %>

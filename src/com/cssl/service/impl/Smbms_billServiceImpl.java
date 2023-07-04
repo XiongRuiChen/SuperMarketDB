@@ -8,6 +8,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -33,5 +34,29 @@ public class Smbms_billServiceImpl implements Smbms_billService {
     @Override
     public List<String> getProNames() {
         return SbM.selectProNameByAll();
+    }
+
+    @Override
+    @Transactional
+    public Integer addBill(Smbms_bill bill) {
+        return SbM.addBill(bill);
+    }
+
+    @Override
+    public Smbms_bill findById(Integer id) {
+        return SbM.findById(id);
+    }
+
+
+    @Override
+    @Transactional
+    public Integer updateBill(Smbms_bill bills) {
+        return SbM.updateBill(bills);
+    }
+
+    @Override
+    @Transactional
+    public Integer deleteBill(Integer id) {
+        return SbM.deleteBill(id);
     }
 }

@@ -10,7 +10,7 @@
         <span>供应商管理页面</span>
     </div>
     <div class="search">
-        <form method="get" action="${pageContext.request.contextPath }/providerlist.do">
+        <form method="get" action="${pageContext.request.contextPath }/providerlist.do">1
             <!-- <input name="method" value="query" type="hidden"> -->
 
             <span>供应商联系人：</span>

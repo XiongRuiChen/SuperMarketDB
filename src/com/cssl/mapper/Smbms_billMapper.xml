@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cssl.mapper.Smbms_billMapper">
-    <resultMap id="BaseResultMap" type="com.cssl.pojo.Smbms_bill" >
+    <resultMap id="BaseResultMap" type="com.cssl.pojo.Smbms_bill">
         <id column="id" property="id"/>
         <result column="billCode" property="billCode"/>
         <result column="productName" property="productName"/>
@@ -20,7 +20,7 @@
         <association property="smbmsProvider" resultMap="ProviderResultMap"/>
     </resultMap>
 
-    <resultMap id="ProviderResultMap" type="com.cssl.pojo.Smbms_provider" >
+    <resultMap id="ProviderResultMap" type="com.cssl.pojo.Smbms_provider">
         <id column="id" property="id"/>
         <result column="proCode" property="proCode"/>
         <result column="proName" property="proName"/>
@@ -52,6 +52,18 @@
             and isPayment = #{isPayment}
         </if>
     </select>
+    <insert id="addBill" parameterType="Smbms_bill">
+        INSERT INTO `smbms_bill`
+        (`billCode`,`productName`,`productDesc`,`productUnit`,`productCount`,`totalPrice`,`isPayment`,`createdBy`,`creationDate`,`providerId`)
+        VALUES(#{billCode},#{productName},#{productDesc},#{productUnit},#{productCount},#{totalPrice},#{isPayment},#{createdBy},#{creationDate},#{providerId})
+    </insert>
 
+    <select id="findById" resultType="Smbms_bill" resultMap="BaseResultMap">
+        SELECT b.*,p.proName FROM `smbms_bill` as b INNER JOIN `smbms_provider` as p ON b.providerId = p.id
+        WHERE b.id = #{id}
+    </select>
 
+    <delete id="deleteBill">
+        DELETE FROM smbms_bill WHERE id = #{id}
+    </delete>
 </mapper>

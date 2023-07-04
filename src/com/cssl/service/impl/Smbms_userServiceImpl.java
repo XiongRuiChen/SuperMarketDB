@@ -9,6 +9,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -30,6 +31,7 @@ public class Smbms_userServiceImpl implements Smbms_userService {
     }
 
     @Override
+    @Transactional
     public Integer UpdatePwd(Smbms_user user) {
         return SUM.UpdatePwd(user);
     }

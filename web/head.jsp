@@ -7,8 +7,12 @@
     <title>超市订单管理系统</title>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/public.css"/>
+    <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath }/css/model.css"/>
+    <script src="js/jquery-confirm.js"></script>
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <link type="text/css" rel="stylesheet" href="css/jquery-confirm.less">
+    <link type="text/css" rel="stylesheet" href="css/jquery-confirm.css">
 </head>
-
 <body>
 <!--头部-->
 <header class="publicHeader">

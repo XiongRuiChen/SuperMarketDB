@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.client.support.HttpRequestWrapper;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.context.request.SessionScope;
@@ -71,7 +72,7 @@ public class Smbms_userController {
         return "redirect:" + ContextPath + "/index.jsp";
     }
 
-    //添加新用户
+    //查询全部用户
     @ResponseBody()
     @RequestMapping(value = "/FindAllUser.do")
     public ModelAndView FindAllUser(ModelAndView mv) {
@@ -81,6 +82,8 @@ public class Smbms_userController {
         return mv;
     }
 
+
+    @Transactional
     @RequestMapping(value = "/UpdatePwd.do")
     public ModelAndView UpdatePwd(ModelAndView mv,
                                   HttpServletRequest req,
@@ -109,6 +112,7 @@ public class Smbms_userController {
         return mv;
     }
 
+    //查询全部用户 分页
     @GetMapping("/userlist.do")
     public String getUserList(
             @RequestParam(value="userName",defaultValue="")String userName,
@@ -126,6 +130,8 @@ public class Smbms_userController {
         map.put("rolename",roleName);
         return "useredit";
     }
+
+
 
 
 
