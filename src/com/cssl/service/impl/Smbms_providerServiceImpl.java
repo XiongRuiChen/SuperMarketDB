@@ -8,7 +8,9 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -33,6 +35,21 @@ public class Smbms_providerServiceImpl implements Smbms_providerService {
     @Override
     public Integer addProvider(Smbms_provider provider) {
         return SPM.addProvider(provider);
+    }
+
+    @Override
+    public Integer providerdel(Integer id) {
+        return SPM.providerdel(id);
+    }
+
+    @Override
+    public Smbms_provider findById(Integer id) {
+        return SPM.findById(id);
+    }
+
+    @Override
+    public Integer updateProvider(Smbms_provider provider) {
+        return SPM.updateProvider(provider);
     }
 
 

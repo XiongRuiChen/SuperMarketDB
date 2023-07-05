@@ -17,4 +17,6 @@ public interface Smbms_userMapper {
 
     List<Smbms_role> selectByPageAll(@Param("userName")String userName, @Param("roleName")String roleName);
 
+    Integer addNewUser(Smbms_user user);
+
 }

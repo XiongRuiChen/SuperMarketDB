@@ -12,4 +12,11 @@ public interface Smbms_providerService {
     PageInfo getProviderListPage(String proName, String proContact, Integer n, Integer pageSize);
 
     Integer addProvider(Smbms_provider provider);
+
+    Integer providerdel(Integer id);
+
+    Smbms_provider findById(Integer id);
+
+    Integer updateProvider(Smbms_provider provider);
+
 }

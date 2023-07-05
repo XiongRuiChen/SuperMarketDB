@@ -49,4 +49,8 @@
         </if>
     </select>
 
+    <insert id="addNewUser" parameterType="com.cssl.pojo.Smbms_user">
+
+    </insert>
+
 </mapper>

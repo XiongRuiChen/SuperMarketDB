@@ -37,4 +37,46 @@
         VALUES(#{proCode},#{proName},#{proDesc},#{proContact},#{proPhone},#{proAddress},#{proFax},#{createdBy},#{creationDate})
     </insert>
 
+    <delete id="providerdel">
+        DELETE FROM smbms_provider WHERE ID = ${id}
+    </delete>
+
+    <select id="findById" resultType="com.cssl.pojo.Smbms_provider">
+        SELECT * FROM smbms_provider WHERE ID = ${id};
+    </select>
+
+    <update id="updateProvider" parameterType="com.cssl.pojo.Smbms_provider">
+        update smbms_provider
+        <set >
+            <if test="proCode != null" >
+                proCode = #{proCode},
+            </if>
+            <if test="proName != null" >
+                proName = #{proName},
+            </if>
+            <if test="proDesc != null" >
+                proDesc = #{proDesc},
+            </if>
+            <if test="proContact != null" >
+                proContact = #{proContact},
+            </if>
+            <if test="proPhone != null" >
+                proPhone = #{proPhone},
+            </if>
+            <if test="proAddress != null" >
+                proAddress = #{proAddress},
+            </if>
+            <if test="proFax != null" >
+                proFax = #{proFax},
+            </if>
+            <if test="modifyDate != null" >
+                modifyDate = #{modifyDate},
+            </if>
+            <if test="modifyBy != null" >
+                modifyBy = #{modifyBy},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
 </mapper>

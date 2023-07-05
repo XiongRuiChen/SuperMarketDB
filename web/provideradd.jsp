@@ -8,7 +8,7 @@
             <span>供应商管理页面 >> 供应商添加页面</span>
         </div>
         <div class="providerAdd">
-           <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/add">
+           <form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/addProvider.do">
                 <div class="">
                     <label for="procode">供应商编码：</label>
                     <input type="text" name="procode" id="procode" value=""> 
@@ -42,7 +42,7 @@
                 </div>
                 <div>
                     <label for="prodesc">描述：</label>
-                    <input type="text" name="proDesc" id="proDesc" value="">
+                    <input type="text" name="prodesc" id="proDesc" value="">
                     <font color="red"></font>
                 </div>
                 <div class="providerAddBtn">

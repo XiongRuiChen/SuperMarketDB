@@ -166,7 +166,7 @@ public class Smbms_billController {
         return mv;
     }
 
-    public long getSessionUSERId(HttpServletRequest res) {
+    public static long getSessionUSERId(HttpServletRequest res) {
         Smbms_user user = (Smbms_user) res.getSession().getAttribute("USER");
         return user.getId();
     }

@@ -18,4 +18,10 @@ public interface Smbms_providerMapper {
     List<Smbms_provider> selectByPageAll(@Param("proName")String proName, @Param("proContact")String proContact);
 
     Integer addProvider(Smbms_provider provider);
+
+    Integer providerdel(Integer id);
+
+    Smbms_provider findById(Integer id);
+
+    Integer updateProvider(Smbms_provider provider);
 }

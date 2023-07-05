@@ -3,7 +3,9 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@include file="head.jsp"%>
-
+<c:if test="${pageInfo==null}">
+    <c:redirect url="http://localhost:8080/SuperMarketDB/providerlist.do"/>
+</c:if>
 <div class="right">
     <div class="location">
         <strong>你现在所在的位置是:</strong>
@@ -62,9 +64,9 @@
                     <span><f:formatDate value="${pr.creationDate}" pattern="yyyy-MM-dd"/></span>
                 </td>
                 <td>
-                    <span><a class="viewProvider" href="${pageContext.request.contextPath}/provider/providerview?id=${pr.id}&flag=update"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-                    <span><a class="modifyProvider" href="${pageContext.request.contextPath}/provider/providermodify?id=${pr.id}&flag=update"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-                    <span><a class="deleteProvider" href="${pageContext.request.contextPath}/provider/providerdel?id=${pr.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+                    <span><a class="viewProvider" href="${pageContext.request.contextPath}/providerview.do?id=${pr.id}&flag=update"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
+                    <span><a class="modifyProvider" href="${pageContext.request.contextPath}/providermodifyS.do?id=${pr.id}"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
+                    <span><a class="deleteProvider" href="${pageContext.request.contextPath}/providerdel.do?id=${pr.id}"><img src="${pageContext.request.contextPath}/images/schu.png" alt="删除" title="删除" onclick="confirm('是否删除这条记录?')"/></a></span>
                 </td>
             </tr>
         </c:forEach>
