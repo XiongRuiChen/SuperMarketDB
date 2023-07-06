@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,6 +36,17 @@ public class Smbms_billController {
         mv.addObject("AllBills", list);
         mv.setViewName("bilist");
         return mv;
+    }
+
+    @RequestMapping("/exportExcel.do")
+    public ModelAndView exportExcel() {
+        // 获取要导出的数据，假设是一个订单列表
+        List<Smbms_bill> billList = SbS.FindAllBill();
+        // 创建模型视图
+        ModelAndView modelAndView = new ModelAndView("excelView");
+        // 将要导出的数据存储在模型中
+        modelAndView.addObject("data", billList);
+        return modelAndView;
     }
 
     @RequestMapping("/billlist.do")

@@ -36,8 +36,8 @@
         <association property="smbmsBill" resultMap="BaseResultMap"/>
     </resultMap>
 
-    <select id="FindAllBill" resultType="Smbms_bill">
-        SELECT * FROM `smbms_bill` WHERE 1 = 1;
+    <select id="FindAllBill" resultMap="BaseResultMap">
+        select b.*,p.proName from smbms_bill b,smbms_provider p where b.providerId=p.id
     </select>
 
     <select id="selectByPageAll" resultMap="BaseResultMap">

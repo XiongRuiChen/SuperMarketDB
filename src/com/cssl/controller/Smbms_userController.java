@@ -37,6 +37,7 @@ public class Smbms_userController {
     private final String ContextPath = "http://localhost:8080/SuperMarketDB";
 
 
+
     //用户登录
     @RequestMapping(value = "/login.do", produces = "application/json")
     private ModelAndView login(String userCode, String userPassword, ModelAndView mv, HttpServletRequest req) {
@@ -86,6 +87,8 @@ public class Smbms_userController {
         mv.setViewName("useredit");
         return mv;
     }
+
+
 
 
     @Transactional

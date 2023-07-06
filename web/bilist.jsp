@@ -32,7 +32,8 @@
                 <option value="2">已付款</option>
             </select>
             <input value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath }/getProNamesC.do">添加订单</a>
+            <a href="${pageContext.request.contextPath}/exportExcel.do">下载表格</a>
+            <a href="${pageContext.request.contextPath}/getProNamesC.do">添加订单</a>
         </form>
     </div>
     <!--账单表格 样式和供应商公用-->
@@ -86,11 +87,11 @@
                     <span><f:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/></span>
                 </td>
                 <td>
-                    <span><a class="viewBill" href="${pageContext.request.contextPath }/view.do?id=${bill.id}"><img
-                            src="${pageContext.request.contextPath }/images/read.png" alt="查看"
+                    <span><a class="viewBill" href="${pageContext.request.contextPath}/view.do?id=${bill.id}"><img
+                            src="${pageContext.request.contextPath}/images/read.png" alt="查看"
                             title="查看"/></a></span>
-                    <span><a class="modifyBill" href="${pageContext.request.contextPath }/modify.do?id=${bill.id}"><img
-                            src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改"
+                    <span><a class="modifyBill" href="${pageContext.request.contextPath}/modify.do?id=${bill.id}"><img
+                            src="${pageContext.request.contextPath}/images/xiugai.png" alt="修改"
                             title="修改"/></a></span>
                     <span>
     <a class="deleteBill"
@@ -106,13 +107,13 @@
     <div class="page-bar">
         <ul class="page-num-ul clearfix">
             <li>共${pageInfo.total}条记录&nbsp;&nbsp; ${pageInfo.pageNum}/${pageInfo.pages}页</li>
-            <a href="${pageContext.request.contextPath }/billlist.do?n=${pageInfo.firstPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">首页</a>
-            <a href="${pageContext.request.contextPath }/billlist.do?n=${pageInfo.prePage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">上一页</a>
+            <a href="${pageContext.request.contextPath}/billlist.do?n=${pageInfo.firstPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">首页</a>
+            <a href="${pageContext.request.contextPath}/billlist.do?n=${pageInfo.prePage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">上一页</a>
             <c:forEach items="${pageInfo.navigatepageNums}" var="num">
-                <a href="${pageContext.request.contextPath }/billlist.do?n=${num}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">${num}</a>
+                <a href="${pageContext.request.contextPath}/billlist.do?n=${num}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">${num}</a>
             </c:forEach>
-            <a href="${pageContext.request.contextPath }/billlist.do?n=${pageInfo.nextPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">下一页</a>
-            <a href="${pageContext.request.contextPath }/billlist.do?n=${pageInfo.lastPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">最后一页</a>
+            <a href="${pageContext.request.contextPath}/billlist.do?n=${pageInfo.nextPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">下一页</a>
+            <a href="${pageContext.request.contextPath}/billlist.do?n=${pageInfo.lastPage}&productName=${productName}&proName=${proName}&isPayment=${isPayment}">最后一页</a>
             &nbsp;&nbsp;
         </ul>
         <!--  <span class="page-go-form"><label>跳转至</label>
@@ -125,7 +126,7 @@
     <!--点击删除按钮后弹出的页面-->
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
-        <form class="modal-content" action="${pageContext.request.contextPath }/del.do?id=">
+        <form class="modal-content" action="${pageContext.request.contextPath}/del.do?id=">
             <div class="container">
                 <h1>删除数据</h1>
                 <p>您确定要删除这条数据吗？</p>
@@ -143,4 +144,4 @@
     </div>
 
     <%@include file="foot.jsp" %>
-<%--    <script type="text/javascript" src="${pageContext.request.contextPath }/js/list.do.js"></script>--%>
+<%--    <script type="text/javascript" src="${pageContext.request.contextPath}/js/list.do.js"></script>--%>

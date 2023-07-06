@@ -39,5 +39,12 @@
 	   <property name="order" value="100"/>	
     </bean>
 
-		
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**" /> <!-- 拦截所有请求 -->
+			<bean class="com.cssl.interceptor.SessionInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean id="excelView" class="com.cssl.view.ExcelView" />
 </beans>
