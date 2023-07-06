@@ -22,6 +22,14 @@ public interface Smbms_userService {
     PageInfo getUserListPage(String userName,String roleName,Integer n,Integer pageSize);
 
     //查询岗位名称
-    public List<String> getRoleNames();
+    List<String> getRoleNames();
+
+    Integer addNewUser(Smbms_user user);
+
+    Smbms_user findOneById(Integer id);
+
+    Integer delById(Integer id);
+
+    Integer updateUser(Smbms_user user);
 
 }

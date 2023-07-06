@@ -19,4 +19,9 @@ public interface Smbms_userMapper {
 
     Integer addNewUser(Smbms_user user);
 
+    Smbms_user findOneById(Integer id);
+
+    Integer delById(Integer id);
+
+    Integer updateUser(Smbms_user user);
 }

@@ -3,6 +3,9 @@
 <%@include file="head.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:if test="${pageInfo==null}">
+    <c:redirect url="http://localhost:8080/SuperMarketDB/userlist.do"/>
+</c:if>
 <div class="right">
     <div class="location">
         <strong>你现在所在的位置是:</strong>
@@ -20,7 +23,7 @@
                 </c:forEach>
             </select>
             <input	value="查 询" type="submit" id="searchbutton">
-            <a href="${pageContext.request.contextPath }/useradd">添加用户</a>
+            <a href="${pageContext.request.contextPath }/getRoleNamesSc.do">添加用户</a>
         </form>
     </div>
     <!--用户-->
@@ -56,9 +59,9 @@
                 </td>
 
                 <td>
-                    <span><a class="viewUser" href="${pageContext.request.contextPath }/userview?id=${ur.id}"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-                    <span><a class="modifyUser" href="${pageContext.request.contextPath }/usermodify?id=${ur.id}&flag=update"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-                    <span><a class="deleteUser" href="${pageContext.request.contextPath }/userdel?id=${ur.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+                    <span><a class="viewUser" href="${pageContext.request.contextPath }/userview.do?id=${ur.id}"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
+                    <span><a class="modifyUser" href="${pageContext.request.contextPath }/getRoleNamesUp.do?id=${ur.id}"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
+                    <span><a class="deleteUser" href="javascript:if(confirm('您真的要删除吗？')){location.href='${pageContext.request.contextPath }/delById.do?id=${ur.id}'}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
                 </td>
             </tr>
         </c:forEach>

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
+@Transactional
 public class Smbms_userServiceImpl implements Smbms_userService {
 
     @Autowired
@@ -47,6 +48,26 @@ public class Smbms_userServiceImpl implements Smbms_userService {
     @Override
     public List<String> getRoleNames() {
         return SRM.selectRoleNameByAll();
+    }
+
+    @Override
+    public Integer addNewUser(Smbms_user user) {
+        return SUM.addNewUser(user);
+    }
+
+    @Override
+    public Smbms_user findOneById(Integer id) {
+        return SUM.findOneById(id);
+    }
+
+    @Override
+    public Integer delById(Integer id) {
+        return SUM.delById(id);
+    }
+
+    @Override
+    public Integer updateUser(Smbms_user user) {
+        return SUM.updateUser(user);
     }
 
 }

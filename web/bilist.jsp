@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8"%>
+         pageEncoding="UTF-8" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@include file="head.jsp"%>
+<%@include file="head.jsp" %>
 <c:if test="${pageInfo==null}">
     <c:redirect url="http://localhost:8080/SuperMarketDB/billlist.do"/>
 </c:if>
@@ -31,7 +31,7 @@
                 <option value="1">未付款</option>
                 <option value="2">已付款</option>
             </select>
-            <input	value="查 询" type="submit" id="searchbutton">
+            <input value="查 询" type="submit" id="searchbutton">
             <a href="${pageContext.request.contextPath }/getProNamesC.do">添加订单</a>
         </form>
     </div>
@@ -86,9 +86,19 @@
                     <span><f:formatDate value="${bill.creationDate}" pattern="yyyy-MM-dd"/></span>
                 </td>
                 <td>
-                    <span><a class="viewBill" href="${pageContext.request.contextPath }/view.do?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
-                    <span><a class="modifyBill" href="${pageContext.request.contextPath }/modify.do?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-                    <span><a class="deleteBill" href="${pageContext.request.contextPath }/del.do?id=${bill.id}" did="${bill.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除" onclick="confirm('真的要删除这条数据吗?')" class="aid"/></a></span>
+                    <span><a class="viewBill" href="${pageContext.request.contextPath }/view.do?id=${bill.id}"><img
+                            src="${pageContext.request.contextPath }/images/read.png" alt="查看"
+                            title="查看"/></a></span>
+                    <span><a class="modifyBill" href="${pageContext.request.contextPath }/modify.do?id=${bill.id}"><img
+                            src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改"
+                            title="修改"/></a></span>
+                    <span>
+    <a class="deleteBill"
+       href="javascript:if(confirm('您真的要删除吗？')){location.href='${pageContext.request.contextPath}/del.do?id=${bill.id}' + '&did=${bill.id}'}">
+        <img src="${pageContext.request.contextPath}/images/schu.png" alt="删除" title="删除" class="aid"/>
+    </a>
+</span>
+
                 </td>
             </tr>
         </c:forEach>
@@ -121,8 +131,12 @@
                 <p>您确定要删除这条数据吗？</p>
 
                 <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="deletebtn">Delete</button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                            class="cancelbtn">Cancel
+                    </button>
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'"
+                            class="deletebtn">Delete
+                    </button>
                 </div>
             </div>
         </form>
